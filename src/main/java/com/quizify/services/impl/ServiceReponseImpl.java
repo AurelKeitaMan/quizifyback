@@ -1,4 +1,4 @@
-package com.quizify.services.Impl;
+package com.quizify.services.impl;
 
 public class ServiceReponseImpl {
 
