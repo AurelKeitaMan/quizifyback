@@ -26,8 +26,8 @@ public class ServiceReponseImpl implements ServiceReponse{
 	}
 
 	@Override
-	public void addReponse(Reponse reponse) {
-	reponseRepo.save(reponse);
+	public Reponse addReponse(Reponse reponse) {
+	return reponseRepo.save(reponse);
 	}
 
 	@Override
@@ -37,9 +37,9 @@ public class ServiceReponseImpl implements ServiceReponse{
 	}
 
 	@Override
-	public void updateReponse(Long idReponse, Reponse newReponse) {
+	public Reponse updateReponse(Long idReponse, Reponse newReponse) {
 			newReponse.setId(idReponse);
-			reponseRepo.save(newReponse);
+			return reponseRepo.save(newReponse);
 	}
 
 }

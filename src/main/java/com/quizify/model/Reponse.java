@@ -29,6 +29,6 @@ public class Reponse {
 	
 	@NonNull
 	@ManyToOne
-	private Question idQuestion;
+	private Question question;
 	
 }

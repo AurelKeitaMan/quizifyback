@@ -10,9 +10,9 @@ public interface ServiceReponse {
 
 	Reponse getReponseById(Long idReponse);
 
-	void addReponse(Reponse reponse);
+	Reponse addReponse(Reponse reponse);
 
 	void deleteReponse(Long idReponse);
 
-	void updateReponse(Long idReponse, Reponse reponse);
+	Reponse updateReponse(Long idReponse, Reponse reponse);
 }
