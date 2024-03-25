@@ -1,8 +1,8 @@
-package com.quizify.Service;
+package com.quizify.services;
 
 import java.util.List;
 
-import com.quizify.Model.Categorie;
+import com.quizify.model.Categorie;
 
 import jakarta.validation.Valid;
 

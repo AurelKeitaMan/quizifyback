@@ -1,10 +1,10 @@
-package com.quizify.Service.Impl;
+package com.quizify.services.impl;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.quizify.Repository.CategorieRepository;
+import com.quizify.repository.CategorieRepository;
 
 @Service
 public class ServiceCategorieImpl {

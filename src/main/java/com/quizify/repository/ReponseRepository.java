@@ -1,4 +1,4 @@
-package com.quizify.Repository;
+package com.quizify.repository;
 
 public interface ReponseRepository {
 

@@ -1,4 +1,4 @@
-package com.quizify.Model;
+package com.quizify.model;
 
 public class Question {
 

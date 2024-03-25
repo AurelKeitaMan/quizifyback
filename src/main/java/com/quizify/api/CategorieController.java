@@ -1,4 +1,4 @@
-package com.quizify.Api;
+package com.quizify.api;
 
 public class CategorieController {
 
