@@ -46,9 +46,9 @@ public class CategorieController {
 		
 	}
 	
-	@PutMapping
-	public Categorie modifierCategorie(@RequestBody @Valid Categorie categorieUpdate) {
-		return serviceCategorie.modifierCategorie(categorieUpdate);
+	@PutMapping("{categorieId")
+	public Categorie modifierCategorie(@RequestBody @Valid Categorie categorieUpdate, @PathVariable Long categorieId) {
+		return serviceCategorie.modifierCategorie(categorieUpdate, categorieId);
 	}
 	
 	@DeleteMapping("{categorieId")
