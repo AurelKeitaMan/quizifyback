@@ -46,12 +46,12 @@ public class CategorieController {
 		
 	}
 	
-	@PutMapping("{categorieId")
+	@PutMapping("{categorieId}")
 	public Categorie modifierCategorie(@RequestBody @Valid Categorie categorieUpdate, @PathVariable Long categorieId) {
 		return serviceCategorie.modifierCategorie(categorieUpdate, categorieId);
 	}
 	
-	@DeleteMapping("{categorieId")
+	@DeleteMapping("{categorieId}")
 	public void supprimerCategorieParId(@PathVariable Long categorieId) {
 		if(serviceCategorie.retrouverCategorieParId(categorieId) == null) {
 			throw  new ResponseStatusException(HttpStatus.NOT_FOUND);
