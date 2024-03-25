@@ -14,7 +14,7 @@ public interface ServiceCategorie {
 	
 	Categorie ajouterCategorie (@Valid Categorie categoriePost);
 	
-	Categorie modifierCategorie (@Valid Categorie categorieUpdate);
+	Categorie modifierCategorie (@Valid Categorie categorieUpdate, Long categorieId);
 	
 	void supprimerCategorie(Long categorieId);
 	
