@@ -43,12 +43,12 @@ public class QuestionController {
 		return serviceQuestion.ajouterQuestion(questionPost);
 	}
 	
-	@PutMapping("{questionId")
+	@PutMapping("{questionId}")
 	public Question modifierQuestion(@RequestBody @Valid Question questionUpdate, @PathVariable Long questionId) {
 		return serviceQuestion.modifierQuestion(questionUpdate, questionId);
 	}
 	
-	@DeleteMapping("{questionId")
+	@DeleteMapping("{questionId}")
 	public void supprimerCategorieParId(@PathVariable Long questionId) {
 		if(serviceQuestion.questionParId(questionId) == null) {
 			throw  new ResponseStatusException(HttpStatus.NOT_FOUND);

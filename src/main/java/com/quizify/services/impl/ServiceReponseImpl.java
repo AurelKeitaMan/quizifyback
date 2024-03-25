@@ -3,12 +3,13 @@ package com.quizify.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.quizify.model.Reponse;
 import com.quizify.repository.ReponseRepository;
 import com.quizify.services.ServiceReponse;
 
-
+@Service
 public class ServiceReponseImpl implements ServiceReponse{
 	
 	@Autowired
