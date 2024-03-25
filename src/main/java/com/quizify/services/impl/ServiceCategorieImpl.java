@@ -23,8 +23,7 @@ public class ServiceCategorieImpl implements ServiceCategorie {
 	
 	@Override
 	public List<Categorie> listerLesCategories(){
-		List<Categorie> categorie = categorieRepository.findAll();
-		return categorie;
+		return categorieRepository.findAll();
 	}
 	
 	@Override
