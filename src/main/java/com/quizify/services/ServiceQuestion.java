@@ -1,4 +1,4 @@
-package com.quizify.Service;
+package com.quizify.services;
 
 public interface ServiceQuestion {
 

@@ -1,8 +1,8 @@
-package com.quizify.Repository;
+package com.quizify.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.quizify.Model.Categorie;
+import com.quizify.model.Categorie;
 
 public interface CategorieRepository extends JpaRepository<Categorie, Long>{
 

@@ -1,4 +1,4 @@
-package com.quizify.Api;
+package com.quizify.model;
 
 public class Reponse {
 

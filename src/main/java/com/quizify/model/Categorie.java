@@ -1,4 +1,4 @@
-package com.quizify.Model;
+package com.quizify.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
