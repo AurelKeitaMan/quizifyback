@@ -2,13 +2,16 @@ package com.quizify.services;
 
 import java.util.List;
 
-import com.quizify.services.dto.CategorieDTO;
-import com.quizify.services.dto.QuestionDTO;
+import com.quizify.model.Question;
+
+import jakarta.validation.Valid;
 
 public interface ServiceQuestion {
 
-	List<QuestionDTO> listerQuestions();
-	List<QuestionDTO> listerQuestionParCategorie(long categorieId);
-	List<CategorieDTO> listerPoles();
+	List<Question> listerQuestions();
+	Question questionParId(Long questionId);
+	Question ajouterQuestion(@Valid Question questionPost);
+	Question modifierQuestion(@Valid Question questionUpdate, Long questionId);
+	void supprimerQuestion(Long questionId);
 
 }
