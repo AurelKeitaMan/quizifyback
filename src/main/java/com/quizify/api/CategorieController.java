@@ -35,8 +35,8 @@ public class CategorieController {
 	
 	@GetMapping("{categorieId}")
 	public Categorie retourneCategorieParId(@PathVariable Long categorieId) {
-		Categorie categorieParId = serviceCategorie.retrouverCategorieParId(categorieId);
-		return categorieParId;
+		return serviceCategorie.retrouverCategorieParId(categorieId);
+
 	}
 	
 	@PostMapping
