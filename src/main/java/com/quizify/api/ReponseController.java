@@ -36,13 +36,13 @@ public class ReponseController {
 	}
 
 	@PostMapping
-	void postReponse(@RequestBody Reponse reponse) {
-		reponseService.addReponse(reponse);
+	Reponse postReponse(@RequestBody Reponse reponse) {
+		return reponseService.addReponse(reponse);
 	}
 
 	@PutMapping("/{id}")
-	void updatePlantById(@PathVariable long id,@RequestBody Reponse reponse) {
-		reponseService.updateReponse(id,reponse);
+	Reponse updatePlantById(@PathVariable long id,@RequestBody Reponse reponse) {
+		return reponseService.updateReponse(id,reponse);
 	}
 
 	@DeleteMapping("/{id}")

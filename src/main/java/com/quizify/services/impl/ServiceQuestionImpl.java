@@ -18,8 +18,7 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 
 	@Override
 	public List<Question> listerQuestions() {
-		List<Question> questions = questionRepository.findAll();
-		return questions;
+		return questionRepository.findAll();
 	}
 
 	@Override

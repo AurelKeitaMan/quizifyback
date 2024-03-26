@@ -2,7 +2,6 @@ package com.quizify.services.impl;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,6 @@ public class ServiceCategorieImpl implements ServiceCategorie {
 	@Autowired
 	private CategorieRepository categorieRepository;
 	
-	@Autowired
-	private ModelMapper modelMapper;
 	
 	@Override
 	public List<Categorie> listerLesCategories(){
@@ -33,8 +30,7 @@ public class ServiceCategorieImpl implements ServiceCategorie {
 
 	@Override
 	public Categorie ajouterCategorie(@Valid Categorie categoriePost) {
-		categorieRepository.save(categoriePost);
-		return null;
+		return categorieRepository.save(categoriePost);
 	}
 
 	@Override
@@ -47,7 +43,6 @@ public class ServiceCategorieImpl implements ServiceCategorie {
 	@Override
 	public void supprimerCategorie(Long categorieId) {
 		categorieRepository.deleteById(categorieId);
-		
 	}
 	
 	
