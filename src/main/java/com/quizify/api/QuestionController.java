@@ -35,13 +35,19 @@ public class QuestionController {
 	public List<QuestionDTO> getAll() {
 		return serviceQuestion.listerQuestions();
 	}
+	
+	@GetMapping("/random/{categorieId}")
+	public List<QuestionDTO> getThreeQuestions(@PathVariable Long categorieId) {
+		return serviceQuestion.getRandomQuestionsByCategory(categorieId);
+	}
+	
 	@GetMapping("{categorieId}/categorie")
 	public List<QuestionDTO> getByCategory(@PathVariable Long categorieId) {
 		return serviceQuestion.listerQuestionsParCategorie(categorieId);
 	}
 	
 	@GetMapping("{questionId}")
-	public Question getQuestionById(@PathVariable Long questionId) {
+	public QuestionDTO getQuestionById(@PathVariable Long questionId) {
 		return serviceQuestion.questionParId(questionId);
 	}
 	

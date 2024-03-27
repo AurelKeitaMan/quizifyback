@@ -11,7 +11,8 @@ public interface ServiceQuestion {
 
 	List<QuestionDTO> listerQuestions();
 	List<QuestionDTO> listerQuestionsParCategorie(long catagorieId);
-	Question questionParId(Long questionId);
+    List<QuestionDTO> getRandomQuestionsByCategory(Long categoryId);
+	QuestionDTO questionParId(Long questionId);
 	Question ajouterQuestion(@Valid Question questionPost);
 	Question modifierQuestion(@Valid Question questionUpdate, Long questionId);
 	void supprimerQuestion(Long questionId);

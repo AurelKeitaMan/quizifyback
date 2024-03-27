@@ -28,17 +28,31 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 	@Override
 	public List<QuestionDTO> listerQuestions() {
 		List<Question> question = questionRepository.findAll();
-		return question.stream().map(q -> {QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
-		dto.setReponse(sr.getReponseByQuestion(q.getId()));
-		return dto;}).collect(Collectors.toList());
+		return question.stream().map(q -> {
+			QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
+			dto.setReponse(sr.getReponseByQuestion(q.getId()));
+			return dto;
+		}).collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public List<QuestionDTO> listerQuestionsParCategorie(long categorieId) {
 		List<Question> question = questionRepository.findByCategorieId(categorieId);
-		return question.stream().map(q -> {QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
-		dto.setReponse(sr.getReponseByQuestion(q.getId()));
-		return dto;}).collect(Collectors.toList());
+		return question.stream().map(q -> {
+			QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
+			dto.setReponse(sr.getReponseByQuestion(q.getId()));
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<QuestionDTO> getRandomQuestionsByCategory(Long categoryId) {
+		List<Question> questions = questionRepository.findRandomQuestionsByCategoryId(categoryId);
+		return questions.stream().map(q -> {
+			QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
+			dto.setReponse(sr.getReponseByQuestion(q.getId()));
+			return dto;
+		}).collect(Collectors.toList());
 	}
 
 	@Override
@@ -52,8 +66,11 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 	}
 
 	@Override
-	public Question questionParId(Long questionId) {
-		return questionRepository.findById(questionId).orElseThrow();
+	public QuestionDTO questionParId(Long questionId) {
+		Question q = questionRepository.findById(questionId).orElseThrow();
+		QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
+		dto.setReponse(sr.getReponseByQuestion(q.getId()));
+		return dto;
 	}
 
 	@Override
