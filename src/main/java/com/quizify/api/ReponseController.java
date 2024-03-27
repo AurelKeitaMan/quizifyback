@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quizify.model.Reponse;
 import com.quizify.services.ServiceReponse;
+import com.quizify.services.dto.ReponseDTO;
 
 @RestController
 @RequestMapping("/api/reponse")
@@ -26,7 +27,7 @@ public class ReponseController {
 
 
 	@GetMapping
-	List<Reponse> sendAllReponse() {
+	List<ReponseDTO> sendAllReponse() {
 		return reponseService.getReponse();
 	}
 

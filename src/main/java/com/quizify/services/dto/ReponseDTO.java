@@ -1,5 +1,15 @@
 package com.quizify.services.dto;
 
-public class ReponseDTO {
+import lombok.Data;
 
+
+@Data
+public class ReponseDTO {
+	
+	private Long id;
+	
+	private String libelle;
+	
+	private Boolean estCorrect;
+	
 }

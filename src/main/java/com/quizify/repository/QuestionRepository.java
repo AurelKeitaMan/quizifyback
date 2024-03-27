@@ -9,4 +9,5 @@ import com.quizify.model.Question;
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
 	List<Question> findByCategorie(Categorie categorie);
+	List<Question> findByCategorieId(long categorieId);
 }

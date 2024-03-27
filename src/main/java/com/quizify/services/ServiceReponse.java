@@ -3,10 +3,11 @@ package com.quizify.services;
 import java.util.List;
 
 import com.quizify.model.Reponse;
+import com.quizify.services.dto.ReponseDTO;
 
 public interface ServiceReponse {
 	
-	List<Reponse> getReponse();
+	List<ReponseDTO> getReponse();
 
 	Reponse getReponseById(Long idReponse);
 
@@ -15,4 +16,6 @@ public interface ServiceReponse {
 	void deleteReponse(Long idReponse);
 
 	Reponse updateReponse(Long idReponse, Reponse reponse);
+	
+	List<ReponseDTO> getReponseByQuestion(long id);
 }

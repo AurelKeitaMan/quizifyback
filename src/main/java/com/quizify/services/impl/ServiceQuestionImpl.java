@@ -1,13 +1,18 @@
 package com.quizify.services.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quizify.model.Question;
 import com.quizify.repository.QuestionRepository;
 import com.quizify.services.ServiceQuestion;
+import com.quizify.services.ServiceReponse;
+import com.quizify.services.dto.QuestionDTO;
+
 import jakarta.validation.Valid;
 
 @Service
@@ -15,10 +20,25 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 
 	@Autowired
 	private QuestionRepository questionRepository;
+	@Autowired
+	private ModelMapper modelMapper;
+	@Autowired
+	private ServiceReponse sr;
 
 	@Override
-	public List<Question> listerQuestions() {
-		return questionRepository.findAll();
+	public List<QuestionDTO> listerQuestions() {
+		List<Question> question = questionRepository.findAll();
+		return question.stream().map(q -> {QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
+		dto.setReponse(sr.getReponseByQuestion(q.getId()));
+		return dto;}).collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<QuestionDTO> listerQuestionsParCategorie(long categorieId) {
+		List<Question> question = questionRepository.findByCategorieId(categorieId);
+		return question.stream().map(q -> {QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
+		dto.setReponse(sr.getReponseByQuestion(q.getId()));
+		return dto;}).collect(Collectors.toList());
 	}
 
 	@Override

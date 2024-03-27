@@ -2,7 +2,6 @@ package com.quizify;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.quizify.model.Categorie;
@@ -74,9 +73,5 @@ class QuizifyApplicationTests {
 		
 		reponseRepo.saveAll(Arrays.asList(ballonDOrA, ballonDOrB, ballonDOrC, ballonDOrD));
 	}
-	
-	@Test
-	void contextLoads() {
 
-	}
 }
