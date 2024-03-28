@@ -9,13 +9,16 @@ import org.springframework.stereotype.Service;
 
 import com.quizify.model.Question;
 import com.quizify.model.Reponse;
+import com.quizify.repository.CategorieRepository;
 import com.quizify.repository.QuestionRepository;
 import com.quizify.repository.ReponseRepository;
 import com.quizify.services.ServiceQuestion;
 import com.quizify.services.ServiceReponse;
 import com.quizify.services.dto.QuestionDTO;
+import com.quizify.services.dto.QuestionFrontDTO;
 import com.quizify.services.dto.ReponseDTO;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @Service
@@ -27,9 +30,13 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 	private ModelMapper modelMapper;
 	@Autowired
 	private ServiceReponse sr;
+	
 	@Autowired
 	private ReponseRepository reponseRepo;
 
+	@Autowired
+	private CategorieRepository catRepo;
+	
 	@Override
 	public List<QuestionDTO> listerQuestions() {
 		List<Question> question = questionRepository.findAll();
@@ -75,7 +82,47 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 	}
 
 	@Override
+	public QuestionFrontDTO ajouterQuestionFrontDTO(QuestionFrontDTO dto, long categorieId) {
+		Question q = new Question();
+		Reponse r = new Reponse();
+		Reponse r2 = new Reponse();
+		Reponse r3 = new Reponse();
+		Reponse r4 = new Reponse();
+		
+		q.setCategorie(catRepo.findById(categorieId).orElseThrow());
+		q.setLibelle(dto.getLibelle());
+		questionRepository.save(q);
+		
+		r.setLibelle(dto.getReponse1());
+		r.setEstCorrect(true);
+		r.setQuestion(q);
+		reponseRepo.save(r);
+		
+		r2.setLibelle(dto.getReponse2());
+		r2.setEstCorrect(false);
+		r2.setQuestion(q);
+		reponseRepo.save(r2);
+		
+		r3.setLibelle(dto.getReponse3());
+		r3.setEstCorrect(false);
+		r3.setQuestion(q);
+		reponseRepo.save(r3);
+		
+		r4.setLibelle(dto.getReponse4());
+		r4.setEstCorrect(false);
+		r4.setQuestion(q);
+		reponseRepo.save(r4);
+		
+		return dto;
+	}
+	
+	@Override
+	@Transactional
 	public void supprimerQuestion(Long questionId) {
+		List<Reponse> reponses = reponseRepo.findByQuestionId(questionId);
+		for(Reponse reponse : reponses) {
+			reponseRepo.deleteById(reponse.getId());
+		}
 		questionRepository.deleteById(questionId);
 	}
 
@@ -103,4 +150,5 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 		questionRepository.save(question);
 		return questionUpdate;
 	}
+
 }

@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.quizify.model.Question;
 import com.quizify.services.ServiceQuestion;
 import com.quizify.services.dto.QuestionDTO;
+import com.quizify.services.dto.QuestionFrontDTO;
 
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
@@ -55,6 +55,11 @@ public class QuestionController {
 	public QuestionDTO ajouterQuestion(@RequestBody @Valid QuestionDTO questionPost) {
 		log.info("Question ajoutée : " + questionPost);
 		return serviceQuestion.ajouterQuestion(questionPost);
+	}
+	
+	@PostMapping("{categorieId}")
+	public QuestionFrontDTO ajouterQuestionDtoFront(@RequestBody @Valid QuestionFrontDTO questionPost,@PathVariable Long categorieId) {
+		return serviceQuestion.ajouterQuestionFrontDTO(questionPost,categorieId);
 	}
 	
 	@PutMapping("{questionId}")
