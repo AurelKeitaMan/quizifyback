@@ -24,6 +24,11 @@ public class ServiceCategorieImpl implements ServiceCategorie {
 	}
 	
 	@Override
+	public List<Categorie> categoriesWithMoreThreeQuestions(){
+		return categorieRepository.findCategoriesWithAtLeastThreeQuestion();
+	}
+	
+	@Override
 	public Categorie retrouverCategorieParId (Long categorieId) {
 		return categorieRepository.findById(categorieId).orElseThrow();
 	}

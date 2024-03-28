@@ -10,6 +10,8 @@ public interface ServiceCategorie {
 	
 	List<Categorie> listerLesCategories();
 	
+	List<Categorie> categoriesWithMoreThreeQuestions();
+	
 	Categorie retrouverCategorieParId(Long categorieId);
 	
 	Categorie ajouterCategorie (@Valid Categorie categoriePost);

@@ -35,6 +35,11 @@ public class CategorieController {
 		return serviceCategorie.listerLesCategories();
 	}
 	
+	@GetMapping("/q3")
+	public List<Categorie> categorieWithMoreThreeQuestions(){
+		return serviceCategorie.categoriesWithMoreThreeQuestions();
+	}
+	
 	@GetMapping("{categorieId}")
 	public Categorie retourneCategorieParId(@PathVariable Long categorieId) {
 		return serviceCategorie.retrouverCategorieParId(categorieId);
