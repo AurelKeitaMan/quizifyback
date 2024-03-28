@@ -52,13 +52,13 @@ public class QuestionController {
 	}
 	
 	@PostMapping
-	public Question ajouterQuestion(@RequestBody @Valid Question questionPost) {
+	public QuestionDTO ajouterQuestion(@RequestBody @Valid QuestionDTO questionPost) {
 		log.info("Question ajoutée : " + questionPost);
 		return serviceQuestion.ajouterQuestion(questionPost);
 	}
 	
 	@PutMapping("{questionId}")
-	public Question modifierQuestion(@RequestBody @Valid Question questionUpdate, @PathVariable Long questionId) {
+	public QuestionDTO modifierQuestion(@RequestBody @Valid QuestionDTO questionUpdate, @PathVariable Long questionId) {
 		return serviceQuestion.modifierQuestion(questionUpdate, questionId);
 	}
 	

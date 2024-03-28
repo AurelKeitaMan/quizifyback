@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quizify.model.Question;
+import com.quizify.model.Reponse;
 import com.quizify.repository.QuestionRepository;
+import com.quizify.repository.ReponseRepository;
 import com.quizify.services.ServiceQuestion;
 import com.quizify.services.ServiceReponse;
 import com.quizify.services.dto.QuestionDTO;
+import com.quizify.services.dto.ReponseDTO;
 
 import jakarta.validation.Valid;
 
@@ -24,6 +27,8 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 	private ModelMapper modelMapper;
 	@Autowired
 	private ServiceReponse sr;
+	@Autowired
+	private ReponseRepository reponseRepo;
 
 	@Override
 	public List<QuestionDTO> listerQuestions() {
@@ -56,8 +61,17 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 	}
 
 	@Override
-	public Question ajouterQuestion(@Valid Question questionPost) {
-		return questionRepository.save(questionPost);
+	public QuestionDTO ajouterQuestion(@Valid QuestionDTO questionPost) {
+		Question q = modelMapper.map(questionPost, Question.class);
+		questionRepository.save(q);
+		for(ReponseDTO dto : questionPost.getReponse()) {
+			Reponse r = modelMapper.map(dto, Reponse.class);
+			r.setQuestion(q);
+			reponseRepo.save(r);
+		}
+		QuestionDTO dto = modelMapper.map(q, QuestionDTO.class);
+		dto.setReponse(sr.getReponseByQuestion(q.getId()));
+		return dto;
 	}
 
 	@Override
@@ -74,9 +88,19 @@ public class ServiceQuestionImpl implements ServiceQuestion {
 	}
 
 	@Override
-	public Question modifierQuestion(@Valid Question questionUpdate, Long questionId) {
+	public QuestionDTO modifierQuestion(@Valid QuestionDTO questionUpdate, Long questionId) {
 		Question question = questionRepository.findById(questionId).orElseThrow();
+		
+		question.setId(questionId);
 		question.setLibelle(questionUpdate.getLibelle());
-		return questionRepository.save(question);
+		question.setCategorie(questionUpdate.getCategorie());
+		
+		for(ReponseDTO dto : questionUpdate.getReponse()) {
+			Reponse r = modelMapper.map(dto, Reponse.class);
+			r.setQuestion(question);
+			reponseRepo.save(r);
+		}
+		questionRepository.save(question);
+		return questionUpdate;
 	}
 }

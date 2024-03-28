@@ -13,8 +13,8 @@ public interface ServiceQuestion {
 	List<QuestionDTO> listerQuestionsParCategorie(long catagorieId);
     List<QuestionDTO> getRandomQuestionsByCategory(Long categoryId);
 	QuestionDTO questionParId(Long questionId);
-	Question ajouterQuestion(@Valid Question questionPost);
-	Question modifierQuestion(@Valid Question questionUpdate, Long questionId);
+	QuestionDTO ajouterQuestion(@Valid QuestionDTO questionPost);
+	QuestionDTO modifierQuestion(@Valid QuestionDTO questionUpdate, Long questionId);
 	void supprimerQuestion(Long questionId);
 
 }
