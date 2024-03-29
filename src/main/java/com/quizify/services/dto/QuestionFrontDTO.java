@@ -11,4 +11,5 @@ public class QuestionFrontDTO {
 	String reponse2;
 	String reponse3;
 	String reponse4;
+	String bonneReponse;
 }
